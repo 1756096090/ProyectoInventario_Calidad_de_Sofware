@@ -1,13 +1,17 @@
 package proyecto.inventario;
 
-/**
- * Clase encargada de mostrar el contenido del inventario.
- * Su responsabilidad es únicamente la presentación.
- */
+import java.util.List;
+
+import proyecto.inventario.report.InventoryReport;
+
 public class InventoryPrinter {
-    public static void print(Inventory inventory) {
-        for (Product product : inventory.getProducts()) {
-            System.out.println(product.getDetails());
-        }
+    private InventoryReport report;
+
+    public InventoryPrinter(InventoryReport report) {
+        this.report = report;
+    }
+
+    public void print(List<Product> products) {
+        report.generateReport(products);
     }
 }

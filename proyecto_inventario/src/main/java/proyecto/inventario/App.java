@@ -2,24 +2,23 @@
 package proyecto.inventario;
 
 import proyecto.inventario.repository.InventoryRepository;
+
+import java.util.List;
+
 import proyecto.inventario.report.ConsoleInventoryReport;
 import proyecto.inventario.report.CsvInventoryReport;
 import proyecto.inventario.report.InventoryReport;
 
 public class App {
     public static void main(String[] args) {
-        InventoryRepository repo = new InventoryRepository();
+        Inventory inventory = Inventory.getInstance();
+        inventory.addProduct("Laptop", 5, 999.99);
+        inventory.addProduct("Monitor", 10, 199.99);
 
-        // Añadimos productos
-        repo.add(new Product("Manzana", 10, 0.5));
-        repo.add(new Product("Pera",    5,  0.75));
+        List<Product> products = inventory.getProducts();
 
-        // Reporte consola
-        InventoryReport consoleReport = new ConsoleInventoryReport();
-        consoleReport.generate(repo.findAll());
-
-        // Reporte CSV
-        InventoryReport csvReport = new CsvInventoryReport("inventario.csv");
-        csvReport.generate(repo.findAll());
+        InventoryReport report = new ConsoleInventoryReport(); // o CsvInventoryReport
+        InventoryPrinter printer = new InventoryPrinter(report);
+        printer.print(products);
     }
 }

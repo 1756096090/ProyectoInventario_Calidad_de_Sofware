@@ -10,7 +10,7 @@ public class CsvInventoryReport implements InventoryReport {
     public CsvInventoryReport(String path) { this.path = path; }
 
     @Override
-    public void generate(List<Product> products) {
+    public void generateReport(List<Product> products) {
         try (FileWriter writer = new FileWriter(path)) {
             writer.write("Name,Quantity,Price\n");
             for (Product p : products) {
