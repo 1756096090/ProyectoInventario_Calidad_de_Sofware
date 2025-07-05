@@ -1,15 +1,12 @@
 package proyecto.inventario;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
     private static Inventory instance;
 
-    private List<String> products = new ArrayList<>();
-    private List<Integer> quantities = new ArrayList<>();
-    private List<Double> prices = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
     private Inventory() {}
 
@@ -21,17 +18,14 @@ public class Inventory {
     }
 
     public void addProduct(String name, int quantity, double price) {
-        products.add(name);
-        quantities.add(quantity);
-        prices.add(price);
+        Product product = new Product(name, quantity, price);
+        products.add(product);
         System.out.println("Product added.");
     }
 
     public void printInventory() {
-        for (int i = 0; i < products.size(); i++) {
-            System.out.println("Product: " + products.get(i) +
-                               ", Quantity: " + quantities.get(i) +
-                               ", Price: $" + prices.get(i));
+        for (Product product : products) {
+            System.out.println(product.getDetails());
         }
     }
 }
