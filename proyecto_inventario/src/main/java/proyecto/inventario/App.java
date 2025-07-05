@@ -1,24 +1,27 @@
 // src/main/java/proyecto/inventario/App.java
 package proyecto.inventario;
 
-import proyecto.inventario.repository.InventoryRepository;
-
-import java.util.List;
-
 import proyecto.inventario.report.ConsoleInventoryReport;
 import proyecto.inventario.report.CsvInventoryReport;
 import proyecto.inventario.report.InventoryReport;
 
 public class App {
     public static void main(String[] args) {
-        Inventory inventory = Inventory.getInstance();
-        inventory.addProduct("Laptop", 5, 999.99);
-        inventory.addProduct("Monitor", 10, 199.99);
+        // Solo usamos las operaciones que necesitamos
+        InventoryWriter writer = Inventory.getInstance();
+        InventoryReader reader = Inventory.getInstance();
 
-        List<Product> products = inventory.getProducts();
+        writer.addProduct("Laptop", 5, 999.99);
+        writer.addProduct("Monitor", 10, 199.99);
 
-        InventoryReport report = new ConsoleInventoryReport(); // o CsvInventoryReport
-        InventoryPrinter printer = new InventoryPrinter(report);
-        printer.print(products);
+        // Imprimimos por consola
+        InventoryReport consoleReport = new ConsoleInventoryReport();
+        InventoryPrinter printer = new InventoryPrinter(consoleReport, reader);
+        printer.print();
+
+        // Generamos CSV sin modificar nada más
+        InventoryReport csvReport = new CsvInventoryReport("inventario.csv");
+        printer = new InventoryPrinter(csvReport, reader);
+        printer.print();
     }
 }

@@ -1,3 +1,4 @@
+// src/main/java/proyecto/inventario/Inventory.java
 package proyecto.inventario;
 
 import java.util.ArrayList;
@@ -5,29 +6,27 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Clase que gestiona el inventario.
- * Su responsabilidad es almacenar y administrar productos.
+ * Singleton que gestiona internamente los productos.
+ * Implementa solo las operaciones de lectura y escritura.
  */
-public class Inventory {
+public class Inventory implements InventoryReader, InventoryWriter {
     private static Inventory instance;
-
     private final List<Product> products = new ArrayList<>();
 
     private Inventory() {}
 
     public static Inventory getInstance() {
-        if (instance == null) {
-            instance = new Inventory();
-        }
+        if (instance == null) instance = new Inventory();
         return instance;
     }
 
+    @Override
     public void addProduct(String name, int quantity, double price) {
-        Product product = new Product(name, quantity, price);
-        products.add(product);
+        products.add(new Product(name, quantity, price));
         System.out.println("Product added.");
     }
 
+    @Override
     public List<Product> getProducts() {
         return Collections.unmodifiableList(products);
     }
