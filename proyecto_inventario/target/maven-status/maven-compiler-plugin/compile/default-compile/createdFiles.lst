@@ -1,4 +1,8 @@
 proyecto\inventario\Inventory.class
 proyecto\inventario\InventoryPrinter.class
 proyecto\inventario\Product.class
+proyecto\inventario\repository\InventoryRepository.class
+proyecto\inventario\report\CsvInventoryReport.class
 proyecto\inventario\App.class
+proyecto\inventario\report\InventoryReport.class
+proyecto\inventario\report\ConsoleInventoryReport.class

@@ -1,17 +1,25 @@
+// src/main/java/proyecto/inventario/App.java
 package proyecto.inventario;
 
-/**
- * Clase principal que inicia el sistema de inventario.
- */
+import proyecto.inventario.repository.InventoryRepository;
+import proyecto.inventario.report.ConsoleInventoryReport;
+import proyecto.inventario.report.CsvInventoryReport;
+import proyecto.inventario.report.InventoryReport;
+
 public class App {
     public static void main(String[] args) {
-        System.out.println("=== Inventory System ===");
+        InventoryRepository repo = new InventoryRepository();
 
-        Inventory inventory = Inventory.getInstance();
-        inventory.addProduct("Laptop", 5, 999.99);
-        inventory.addProduct("Monitor", 10, 199.99);
+        // Añadimos productos
+        repo.add(new Product("Manzana", 10, 0.5));
+        repo.add(new Product("Pera",    5,  0.75));
 
-        System.out.println("\n--- Current Inventory ---");
-        InventoryPrinter.print(inventory);
+        // Reporte consola
+        InventoryReport consoleReport = new ConsoleInventoryReport();
+        consoleReport.generate(repo.findAll());
+
+        // Reporte CSV
+        InventoryReport csvReport = new CsvInventoryReport("inventario.csv");
+        csvReport.generate(repo.findAll());
     }
 }
