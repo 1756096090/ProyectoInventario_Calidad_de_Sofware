@@ -1,5 +1,8 @@
 package proyecto.inventario;
 
+/**
+ * Clase principal que inicia el sistema de inventario.
+ */
 public class App {
     public static void main(String[] args) {
         System.out.println("=== Inventory System ===");
@@ -9,6 +12,6 @@ public class App {
         inventory.addProduct("Monitor", 10, 199.99);
 
         System.out.println("\n--- Current Inventory ---");
-        inventory.printInventory();
+        InventoryPrinter.print(inventory);
     }
 }

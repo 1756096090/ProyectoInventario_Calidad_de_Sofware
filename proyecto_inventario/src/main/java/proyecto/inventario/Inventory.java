@@ -1,12 +1,17 @@
 package proyecto.inventario;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+/**
+ * Clase que gestiona el inventario.
+ * Su responsabilidad es almacenar y administrar productos.
+ */
 public class Inventory {
     private static Inventory instance;
 
-    private List<Product> products = new ArrayList<>();
+    private final List<Product> products = new ArrayList<>();
 
     private Inventory() {}
 
@@ -23,9 +28,7 @@ public class Inventory {
         System.out.println("Product added.");
     }
 
-    public void printInventory() {
-        for (Product product : products) {
-            System.out.println(product.getDetails());
-        }
+    public List<Product> getProducts() {
+        return Collections.unmodifiableList(products);
     }
 }
