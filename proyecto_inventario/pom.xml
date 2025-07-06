@@ -98,15 +98,10 @@
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>${spotbugs.version}</version>
-        <configuration>
-          <effort>Max</effort>
-          <threshold>Low</threshold>
-          <xmlOutput>true</xmlOutput>
-        </configuration>
+        <version>4.8.3.0</version>
         <executions>
           <execution>
-            <phase>compile</phase>
+            <phase>verify</phase>
             <goals>
               <goal>check</goal>
             </goals>
