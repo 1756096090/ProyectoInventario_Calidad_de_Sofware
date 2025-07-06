@@ -20,6 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Ingresar al proyecto
+        run: | 
+          cd proyecto_inventario/
+
       - name: Retrieve source code
         uses: actions/checkout@v4
         with:
