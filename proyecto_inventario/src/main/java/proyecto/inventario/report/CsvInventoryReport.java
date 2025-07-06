@@ -18,7 +18,7 @@ public class CsvInventoryReport implements InventoryReport {
                     p.getName(), p.getQuantity(), p.getPrice()));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to generate CSV report: " + e.getMessage(), e);
         }
     }
 }
