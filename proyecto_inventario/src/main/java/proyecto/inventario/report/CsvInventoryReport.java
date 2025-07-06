@@ -1,24 +1,31 @@
 package proyecto.inventario.report;
 
 import proyecto.inventario.Product;
-import java.io.FileWriter;
+
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class CsvInventoryReport implements InventoryReport {
     private final String path;
-    public CsvInventoryReport(String path) { this.path = path; }
+
+    public CsvInventoryReport(String path) {
+        this.path = path;
+    }
 
     @Override
     public void generateReport(List<Product> products) {
-        try (FileWriter writer = new FileWriter(path)) {
-            writer.write("Name,Quantity,Price\n");
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(path), StandardCharsets.UTF_8)) {
+            writer.write(String.format("Name,Quantity,Price%n"));
             for (Product p : products) {
-                writer.write(String.format("%s,%d,%.2f\n",
-                    p.getName(), p.getQuantity(), p.getPrice()));
+                writer.write(String.format("%s,%d,%.2f%n",
+                        p.getName(), p.getQuantity(), p.getPrice()));
             }
         } catch (IOException e) {
-            throw new RuntimeException("Failed to generate CSV report: " + e.getMessage(), e);
+            e.printStackTrace();
         }
     }
 }
