@@ -1,5 +1,5 @@
 package proyecto.inventario;
 
 public interface InventoryWriter {
-    void addProduct(String name, int quantity, double price);    
+  void addProduct(String name, int quantity, double price);    
 }

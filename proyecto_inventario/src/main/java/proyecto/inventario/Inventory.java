@@ -9,27 +9,48 @@ import java.util.List;
  * Implementa solo las operaciones de lectura y escritura.
  */
 public class Inventory implements InventoryReader, InventoryWriter {
-    private final List<Product> products = new ArrayList<>();
+  private final List<Product> products = new ArrayList<>();
 
-    private Inventory() {}
+  /** Constructor privado para Singleton. */
+  private Inventory() {
+  }
 
-    // Holder idiom: inicialización perezosa + segura
-    private static class InventoryHolder {
-        private static final Inventory INSTANCE = new Inventory();
-    }
+  /**
+   * Holder idiom para inicialización perezosa y segura del singleton.
+   */
+  private static class InventoryHolder {
+    private static final Inventory INSTANCE = new Inventory();
+  }
 
-    public static Inventory getInstance() {
-        return InventoryHolder.INSTANCE;
-    }
+  /**
+   * Obtiene la instancia única del inventario.
+   * 
+   * @return instancia singleton de Inventory
+   */
+  public static Inventory getInstance() {
+    return InventoryHolder.INSTANCE;
+  }
 
-    @Override
-    public void addProduct(String name, int quantity, double price) {
-        products.add(new Product(name, quantity, price));
-        System.out.println("Product added.");
-    }
+  /**
+   * Agrega un producto al inventario.
+   * 
+   * @param name nombre del producto
+   * @param quantity cantidad disponible
+   * @param price precio unitario
+   */
+  @Override
+  public void addProduct(String name, int quantity, double price) {
+    products.add(new Product(name, quantity, price));
+    System.out.println("Product added.");
+  }
 
-    @Override
-    public List<Product> getProducts() {
-        return Collections.unmodifiableList(products);
-    }
+  /**
+   * Obtiene la lista de productos de forma no modificable.
+   * 
+   * @return lista inmutable de productos
+   */
+  @Override
+  public List<Product> getProducts() {
+    return Collections.unmodifiableList(products);
+  }
 }
