@@ -38,7 +38,7 @@
     <property name="optional" value="true"/>
   </module>
 <!-- 
-  <!-- https://checkstyle.org/filters/suppresswithnearbytextfilter.html -->
+  <!-- https://checkstyle.org/filters/suppresswithnearbytextfilter.html 
   <module name="SuppressWithNearbyTextFilter">
     <property name="nearbyTextPattern"
               value="CHECKSTYLE.SUPPRESS\: (\w+) for ([+-]\d+) lines"/>
