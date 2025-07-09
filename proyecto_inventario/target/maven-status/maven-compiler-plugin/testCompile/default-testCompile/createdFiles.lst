@@ -1,1 +1,8 @@
-proyecto\inventario\AppTest.class
+proyecto/inventario/InventoryPrinterTest$MockInventoryReader.class
+proyecto/inventario/InventoryPrinterTest.class
+proyecto/inventario/InventoryTest.class
+proyecto/inventario/InventoryPrinterTest$MockInventoryReport.class
+proyecto/inventario/ProductTest.class
+proyecto/inventario/report/CsvInventoryReportTest.class
+proyecto/inventario/report/ConsoleInventoryReportTest.class
+proyecto/inventario/AppTest.class
