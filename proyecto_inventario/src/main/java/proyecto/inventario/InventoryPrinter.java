@@ -19,5 +19,7 @@ public class InventoryPrinter {
   public void print() {
     List<Product> products = reader.getProducts();
     report.generateReport(products);
+    System.out.println("Texto par airmrmi");
+
   }
 }
